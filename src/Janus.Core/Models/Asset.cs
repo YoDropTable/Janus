@@ -3,6 +3,7 @@ namespace Janus.Core.Models;
 public sealed class Asset
 {
     public Guid Id { get; init; } = Guid.NewGuid();
+    public Guid ItemTypeId { get; set; }
     public required string Name { get; set; }
     public string? Type { get; set; }
     public string? Manufacturer { get; set; }

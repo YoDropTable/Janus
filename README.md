@@ -2,13 +2,17 @@
 
 Janus is an MCP-first, self-hosted knowledge system for the physical things you own.
 
-The first goal is intentionally small: an agent can create an asset, attach structured facts to it, and retrieve those facts later through MCP.
+Janus lets an agent define new item types at runtime, attach validated typed properties,
+and retrieve that data later through MCP. No code or database migration is needed when
+a household introduces a new kind of item.
 
-## v0.1 scope
+## Current scope
 
 - MCP is the primary interface.
 - Assets represent vehicles, equipment, appliances, bicycles, home systems, and other physical things.
 - Facts attach arbitrary typed information to assets.
+- Dynamic item types define reusable, validated custom fields stored as rows.
+- Custom fields support string, integer, number, boolean, date, datetime, URL, and enum values.
 - Events record historical changes and maintenance.
 - SQLite is the default persistence layer.
 - Docker is the default deployment path.
@@ -20,9 +24,9 @@ The first goal is intentionally small: an agent can create an asset, attach stru
 3. Ask: `What's the tire pressure for my John Deere cart?`
 4. Janus returns `30 PSI` from persistent storage.
 
-## Planned MCP tools
+## MCP tools
 
-Available in v0.1:
+Available:
 
 - `janus_search`
 - `janus_get_asset`
@@ -31,6 +35,20 @@ Available in v0.1:
 - `janus_set_fact`
 - `janus_remove_fact`
 - `janus_record_event`
+- `janus_list_item_types`
+- `janus_get_item_type`
+- `janus_create_item_type`
+- `janus_update_item_type`
+- `janus_delete_item_type`
+- `janus_add_field_definition`
+- `janus_update_field_definition`
+- `janus_remove_field_definition`
+
+Every instance includes a built-in `basic` type. Existing v0.1 databases are
+automatically mapped to it at startup without losing their original type labels,
+facts, aliases, or events. Custom properties are supplied as JSON values and must
+match their definitions exactly; invalid types, enum values, unknown properties,
+and missing required properties return correction-friendly validation errors.
 
 The Streamable HTTP MCP endpoint is `/mcp`. Tool writes accept an asset UUID,
 name, or alias. Ambiguous references return candidates and never select one
