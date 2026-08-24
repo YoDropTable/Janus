@@ -9,6 +9,7 @@ public sealed class Asset
     public string? Model { get; set; }
     public string? SerialNumber { get; set; }
     public string? Description { get; set; }
+    public IReadOnlyList<string> Aliases { get; set; } = [];
     public DateTimeOffset CreatedAt { get; init; } = DateTimeOffset.UtcNow;
     public DateTimeOffset UpdatedAt { get; set; } = DateTimeOffset.UtcNow;
 }

@@ -3,4 +3,7 @@
     <ProjectReference Include="../Janus.Core/Janus.Core.csproj" />
     <ProjectReference Include="../Janus.Storage/Janus.Storage.csproj" />
   </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="ModelContextProtocol.AspNetCore" Version="2.2.0" />
+  </ItemGroup>
 </Project>

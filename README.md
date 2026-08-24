@@ -22,7 +22,7 @@ The first goal is intentionally small: an agent can create an asset, attach stru
 
 ## Planned MCP tools
 
-Initial:
+Available in v0.1:
 
 - `janus_search`
 - `janus_get_asset`
@@ -31,6 +31,24 @@ Initial:
 - `janus_set_fact`
 - `janus_remove_fact`
 - `janus_record_event`
+
+The Streamable HTTP MCP endpoint is `/mcp`. Tool writes accept an asset UUID,
+name, or alias. Ambiguous references return candidates and never select one
+silently. Measurements keep `value` and `unit` separate so units remain
+explicit in every result.
+
+## Run with Docker
+
+```bash
+docker compose up --build
+```
+
+Janus listens on `http://localhost:8080/mcp` and stores SQLite data in the
+named `janus-data` volume. Set `JANUS_PORT` to publish a different host port:
+
+```bash
+JANUS_PORT=18080 docker compose up --build
+```
 
 Later:
 
