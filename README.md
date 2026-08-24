@@ -39,6 +39,23 @@ explicit in every result.
 
 ## Run with Docker
 
+Pull the published multi-architecture image from GitHub Container Registry:
+
+```bash
+docker pull ghcr.io/sofic-ai/janus:latest
+docker run --name janus \
+  --restart unless-stopped \
+  -p 8080:8080 \
+  -v janus-data:/data \
+  ghcr.io/sofic-ai/janus:latest
+```
+
+The image supports Linux AMD64 and ARM64 hosts. Builds from `main` receive the
+`latest` and `sha-<commit>` tags; Git tags beginning with `v` are published with
+the same tag.
+
+To build from source instead:
+
 ```bash
 docker compose up --build
 ```
