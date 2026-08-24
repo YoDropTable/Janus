@@ -1,0 +1,6 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+  <ItemGroup>
+    <ProjectReference Include="../Janus.Core/Janus.Core.csproj" />
+    <ProjectReference Include="../Janus.Storage/Janus.Storage.csproj" />
+  </ItemGroup>
+</Project>

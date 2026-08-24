@@ -1,0 +1,11 @@
+services:
+  janus:
+    build: .
+    ports:
+      - "8080:8080"
+    volumes:
+      - janus-data:/data
+    restart: unless-stopped
+
+volumes:
+  janus-data:
